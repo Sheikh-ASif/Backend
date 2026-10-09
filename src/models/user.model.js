@@ -30,7 +30,8 @@ const userSchema = new mongoose.Schema(
 
     avatar: {
       type: String,
-      required: true,
+      required: false,
+      // required: true,
     },
 
     coverImage: {
@@ -60,11 +61,18 @@ const userSchema = new mongoose.Schema(
 );
 
 //this logic encrypt the password
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+// userSchema.pre("save", async function (next) {
+//   if (!this.isModified("password")) return next();
 
-  this.password = await bcrypt.hash(hash.password, 10);
-  next();
+//   this.password = await bcrypt.hash(hash.password, 10);
+//   next();
+// });
+userSchema.pre("save", async function () {
+  if (!this.isModified("password")) {
+    return;
+  }
+
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
 userSchema.methods.isPasswordCorrect = async function (password) {
