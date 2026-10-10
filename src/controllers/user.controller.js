@@ -1,5 +1,4 @@
 
-
 import asyncHandler from "../utils/asynchandler.js";
 import ApiError from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
@@ -189,7 +188,7 @@ export { registerUser, loginUser, logoutUser };
 
 
 
-//import asyncHandler from "../utils/asynchandler.js";
+// import asyncHandler from "../utils/asynchandler.js";
 // import ApiError from "../utils/ApiError.js";
 // import { User } from "../models/user.model.js";
 // import apiResponse from "../utils/ApiResponse.js";
@@ -390,4 +389,27 @@ export { registerUser, loginUser, logoutUser };
 //     );
 // });
 
-// export { registerUser, loginUser, logoutUser };
+// const getUserByEmail = asyncHandler(async (req, res) => {
+//   const { email } = req.body;
+
+//   if (!email) {
+//     throw new ApiError(400, "Email is required");
+//   }
+
+//   const user = await User.findOne({ email }).select(
+//     "-password -refreshToken"
+//   );
+
+//   if (!user) {
+//     throw new ApiError(404, "User not found");
+//   }
+
+//   return res.status(200).json({
+//     success: true,
+//     message: "User found successfully",
+//     data: user,
+//   });
+// });
+
+
+// export { registerUser, loginUser, logoutUser, getUserByEmail };
